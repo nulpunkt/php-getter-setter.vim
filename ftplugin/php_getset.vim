@@ -492,7 +492,7 @@ if !exists("*s:ProcessVariable")
   function s:ProcessVariable(variable)
     let s:indent    = substitute(a:variable, s:variable, '\1', '')
     let s:varname   = substitute(a:variable, s:variable, '\4', '')
-    let s:funcname  = toupper(s:varname[0]) . strpart(s:varname, 1)
+    let s:funcname  = toupper(s:varname[0]) . substitute(strpart(s:varname, 1), "_\\([a-z]\\)", "\\u\\1", "g")
 
     " If any getter or setter already exists, then just return as there
     " is nothing to be done.  The assumption is that the user already
